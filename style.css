@@ -1,0 +1,146 @@
+body {
+    font-family: 'PT Sans';
+    background-image: url(images/background.png);
+}
+
+main {
+    margin: 0px auto;
+    width: 80%;
+    height: 60%;
+    background-color: white;
+    padding-bottom: 30px;
+    border-radius: 5px;
+}
+
+.added-msg {
+    margin: 20px auto;
+    width: 500px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgba(2, 231, 2, 0.5);
+}
+
+.error {
+    vertical-align: middle;
+    margin: 5px;
+}
+
+.error-msg {
+    margin: 20px auto;
+    width: 500px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgba(255, 60, 60, 0.5)
+}
+
+header {
+    margin: 0px auto;
+    margin-top: 30px;
+    text-align: center;
+    font-family: 'Open Sans';
+    padding-top: 30px;
+}
+
+p {
+    font-size: 20px;
+}
+
+.input {
+    margin: 0px auto;
+    width: 850px;
+    display: flex;
+    -webkit-appearance: none;
+    text-align: center;    
+}
+
+.new-task {
+    margin: 0px auto;
+    padding: 10px;
+    width: 540px;
+    font-size: 20px;
+    -webkit-appearance: none;
+}
+
+.username {
+    margin: 0px auto;
+    padding: 10px;
+    width: 200px;
+    font-size: 20px;
+    -webkit-appearance: none;
+}
+
+.add-task {
+    width: 50px;
+    -webkit-appearance: none;
+}
+
+.tasks {
+    margin: 20px auto;
+    width: 90%;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.unfinished__header,
+.finished__header {
+    text-decoration: underline;
+}
+
+.added {
+    font-weight: bold;
+}
+
+.list-item {
+    font-size: 20px;
+}
+
+.unfinished {
+    margin: 0px auto;
+    border: 1px solid #767676;
+    width: 400px;
+    display: inline-block;
+}
+
+.finished__content,
+.unfinished__content {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.checkbox {
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.undo-task {
+    text-decoration: none;
+}
+
+.finished {
+    margin: 0px auto;
+    border: 1px solid #767676;
+    width: 400px;    
+    display: inline-block; 
+}
+
+.checked {
+    vertical-align: middle;
+    margin: 5px;
+    text-decoration: none;
+}
+
+.delete-task{
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.delete {
+    vertical-align: middle;
+}
+
+
+.user {
+    vertical-align: middle;
+}
