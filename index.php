@@ -29,8 +29,8 @@ require 'messages.php';
 </form>
 
 <div class="tips-msg">
-    <p>In a hurry? Set high priority by pressing the <img class="set-priority" src="images/set-high-priority.svg"/> icon.</p>
-    <p>OOPS! Ff you accidently check off a task, press the  <img class="checked" src="images/check.svg"/> to undo the task!</p>  
+    <p>In a hurry? Set high priority by clicking the <img class="set-priority" src="images/set-high-priority.svg"/> icon.</p>
+    <p>OOPS? If you check off a task by accident click  <img class="checked" src="images/check.svg"/> to undo the task!</p>  
 </div>
 
 <div class="tasks">
