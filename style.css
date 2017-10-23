@@ -1,23 +1,30 @@
 body {
     font-family: 'PT Sans';
     background-image: url(images/background.png);
+    
 }
 
 main {
     margin: 0px auto;
+    margin-top: 30px;
     width: 80%;
-    height: 60%;
     background-color: white;
     padding-bottom: 30px;
     border-radius: 5px;
 }
 
 .added-msg {
-    margin: 20px auto;
+    margin: 10px auto;
+    padding: 5px;    
     width: 500px;
     text-align: center;
     border-radius: 5px;
     background-color: rgba(2, 231, 2, 0.5);
+}
+
+.added-msg__text {
+    padding: 0px;
+    margin: 0px;
 }
 
 .error {
@@ -27,11 +34,29 @@ main {
 
 .error-msg {
     margin: 20px auto;
+    padding: 5px;    
     width: 500px;
     text-align: center;
     border-radius: 5px;
-    background-color: rgba(255, 60, 60, 0.5)
+    background-color: rgba(255, 60, 60, 0.5);
 }
+
+.error__text {
+    margin: 0px;
+}
+.warning-msg {
+    margin: 20px auto;
+    padding: 5px;
+    width: 500px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgba(236, 236, 2, 0.5);
+}
+
+.warning__text {
+    margin: 0px;
+}
+
 
 header {
     margin: 0px auto;
@@ -39,6 +64,12 @@ header {
     text-align: center;
     font-family: 'Open Sans';
     padding-top: 30px;
+}
+
+.tips-msg {
+    text-align: center;
+    font-style: italic;
+    margin: 15px;
 }
 
 p {
@@ -89,6 +120,7 @@ p {
 
 .added {
     font-weight: bold;
+    margin-left: 5px;
 }
 
 .list-item {
@@ -99,7 +131,9 @@ p {
     margin: 0px auto;
     border: 1px solid #767676;
     width: 400px;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .finished__content,
@@ -109,9 +143,22 @@ p {
     justify-content: space-between;
 }
 
+
+.title-container {
+    display: flex;
+    flex-grow: 1;
+    text-align: left;
+}
+
+
 .checkbox {
     text-decoration: none;
     vertical-align: middle;
+}
+
+.manage-task {
+    flex-shrink: 0;
+    margin: 5px;
 }
 
 .undo-task {
@@ -140,7 +187,80 @@ p {
     vertical-align: middle;
 }
 
+.edit-icon {
+    vertical-align: middle;
+}
 
 .user {
     vertical-align: middle;
+}
+
+.order-content {
+    text-align: left;
+    margin: 5px;
+    padding: 5px;
+}
+
+.set-priority {
+    vertical-align: middle;
+}
+
+.order-priority {
+    vertical-align: middle;
+}
+
+.sort-high {
+    text-decoration: none;
+}
+
+.sort-high-icon {
+    vertical-align: middle;
+}
+
+.sort-low {
+    text-decoration: none;
+}
+
+.sort-low-icon {
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+.high-priority-icon {
+    vertical-align: middle;
+}
+
+.low-priority-icon {
+    vertical-align: middle;
+}
+
+footer {
+    margin: 0px auto;
+    text-align: center;
+}
+
+.github-link {
+    font-size: 20px;
+    vertical-align: middle;
+    font-family: 'Open Sans';
+}
+
+.github-logo {
+    width: 70px ;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon {
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+.bottom-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-all {
+    margin: 10px;
 }

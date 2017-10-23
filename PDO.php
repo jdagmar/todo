@@ -5,9 +5,22 @@ $pdo = new PDO (
     "root"
 );
 
- 
-function getUnfinishedTasks($pdo){
-    $stmt = $pdo->prepare("SELECT * FROM tasks WHERE completed = false");  
+function getUnfinishedTasks($pdo, $orderByPriority, $ascending){
+    $stmt = null;
+    $asc = "DESC";
+
+    if ($ascending) {
+        $asc = "ASC";
+    }
+
+    if ($orderByPriority){
+        $stmt = $pdo->prepare("SELECT * FROM tasks WHERE completed = false ORDER BY priority $asc, created $asc");
+    }
+
+    else {
+        $stmt = $pdo->prepare("SELECT * FROM tasks WHERE completed = false ORDER BY created $asc");  
+    }
+
     $stmt->execute();
     $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC); 
     return $tasks;
@@ -24,12 +37,31 @@ function addTask($pdo, $title, $createdBy){
     $stmt = $pdo->prepare("INSERT INTO tasks (title, createdBy) VALUES (:title, :createdBy)");  
     $stmt->bindParam(":title", $title);
     $stmt->bindParam(":createdBy", $createdBy);    
-    $stmt->execute();
+    $stmt->execute();   
+}
+
+function isTitleUniqe($pdo, $title){
+    $stmt = $pdo->prepare("SELECT * FROM tasks WHERE title = :title");  
+    $stmt->bindParam(":title", $title);
+    $stmt->execute();   
+    $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    if (count($tasks) == 0) {
+        return true;
+    } else {
+        return false;
+    }
+    
 }
 
 function deleteTask($pdo, $id){
     $stmt = $pdo->prepare("DELETE FROM tasks WHERE id = :id");  
     $stmt->bindParam(":id", $id);
+    $stmt->execute();
+}
+
+function deleteAllUnfinishedTasks($pdo){
+    $stmt = $pdo->prepare("DELETE FROM tasks WHERE completed = false");  
     $stmt->execute();
 }
 
@@ -45,6 +77,14 @@ function undoCheckOffTask($pdo, $id){
     $stmt->execute();
 }
 
+function setPriority($pdo, $id){
+    $stmt = $pdo->prepare("UPDATE tasks SET priority = true WHERE id = :id"); 
+    $stmt->bindParam(":id", $id);
+    $stmt->execute();
+}
 
- 
-  
+function undoPriority($pdo, $id) {
+    $stmt = $pdo->prepare("UPDATE tasks SET priority = false WHERE id = :id"); 
+    $stmt->bindParam(":id", $id);
+    $stmt->execute();
+}
