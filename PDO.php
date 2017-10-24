@@ -65,6 +65,12 @@ function deleteAllUnfinishedTasks($pdo){
     $stmt->execute();
 }
 
+function deleteAllFinishedTasks($pdo){
+    $stmt = $pdo->prepare("DELETE FROM tasks WHERE completed = true");  
+    $stmt->execute();
+}
+
+
 function checkOffTask($pdo, $id) {
     $stmt = $pdo->prepare("UPDATE tasks SET completed = true WHERE id = :id"); 
     $stmt->bindParam(":id", $id);
@@ -85,6 +91,13 @@ function setPriority($pdo, $id){
 
 function undoPriority($pdo, $id) {
     $stmt = $pdo->prepare("UPDATE tasks SET priority = false WHERE id = :id"); 
+    $stmt->bindParam(":id", $id);
+    $stmt->execute();
+}
+
+function saveChanges($pdo, $title, $id){
+    $stmt = $pdo->prepare("UPDATE tasks SET title = :title WHERE id = :id"); 
+    $stmt->bindParam(":title", $title);
     $stmt->bindParam(":id", $id);
     $stmt->execute();
 }

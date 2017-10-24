@@ -1,7 +1,8 @@
+
 body {
     font-family: 'PT Sans';
     background-image: url(images/background.png);
-    
+    font-size: 20px;
 }
 
 main {
@@ -9,7 +10,7 @@ main {
     margin-top: 30px;
     width: 80%;
     background-color: white;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     border-radius: 5px;
 }
 
@@ -27,7 +28,7 @@ main {
     margin: 0px;
 }
 
-.error {
+.icon--margin {
     vertical-align: middle;
     margin: 5px;
 }
@@ -41,7 +42,7 @@ main {
     background-color: rgba(255, 60, 60, 0.5);
 }
 
-.error__text {
+.error-msg__text {
     margin: 0px;
 }
 .warning-msg {
@@ -53,10 +54,9 @@ main {
     background-color: rgba(236, 236, 2, 0.5);
 }
 
-.warning__text {
+.warning-msg__text {
     margin: 0px;
 }
-
 
 header {
     margin: 0px auto;
@@ -72,11 +72,7 @@ header {
     margin: 15px;
 }
 
-p {
-    font-size: 20px;
-}
-
-.input {
+.user-input {
     margin: 0px auto;
     width: 850px;
     display: flex;
@@ -84,7 +80,7 @@ p {
     text-align: center;    
 }
 
-.new-task {
+.user-input__new-task {
     margin: 0px auto;
     padding: 10px;
     width: 540px;
@@ -92,7 +88,7 @@ p {
     -webkit-appearance: none;
 }
 
-.username {
+.user-input__username {
     margin: 0px auto;
     padding: 10px;
     width: 200px;
@@ -100,7 +96,7 @@ p {
     -webkit-appearance: none;
 }
 
-.add-task {
+.user-input__add-task {
     width: 50px;
     -webkit-appearance: none;
 }
@@ -113,36 +109,32 @@ p {
     justify-content: space-around;
 }
 
-.unfinished__header,
+.tasks__header,
 .finished__header {
     text-decoration: underline;
 }
 
-.added {
+.title-row__text {
     font-weight: bold;
-    margin-left: 5px;
 }
 
-.list-item {
-    font-size: 20px;
-}
-
-.unfinished {
+.tasks__container {
     margin: 0px auto;
+    
+    padding: 0 10px 40px 10px;
     border: 1px solid #767676;
     width: 400px;
-    display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.finished__content,
-.unfinished__content {
+.tasks__content {
     display: flex;
     padding: 10px;
     justify-content: space-between;
+    text-align: left;
 }
-
 
 .title-container {
     display: flex;
@@ -150,26 +142,13 @@ p {
     text-align: left;
 }
 
-
-.checkbox {
-    text-decoration: none;
-    vertical-align: middle;
-}
-
 .manage-task {
     flex-shrink: 0;
     margin: 5px;
 }
 
-.undo-task {
+a {
     text-decoration: none;
-}
-
-.finished {
-    margin: 0px auto;
-    border: 1px solid #767676;
-    width: 400px;    
-    display: inline-block; 
 }
 
 .checked {
@@ -178,65 +157,20 @@ p {
     text-decoration: none;
 }
 
-.delete-task{
-    text-decoration: none;
-    vertical-align: middle;
-}
-
-.delete {
-    vertical-align: middle;
-}
-
-.edit-icon {
-    vertical-align: middle;
-}
-
-.user {
-    vertical-align: middle;
-}
-
 .order-content {
     text-align: left;
     margin: 5px;
     padding: 5px;
 }
 
-.set-priority {
-    vertical-align: middle;
-}
-
-.order-priority {
-    vertical-align: middle;
-}
-
-.sort-high {
-    text-decoration: none;
-}
-
-.sort-high-icon {
-    vertical-align: middle;
-}
-
-.sort-low {
-    text-decoration: none;
-}
-
-.sort-low-icon {
-    vertical-align: middle;
-    text-decoration: none;
-}
-
-.high-priority-icon {
-    vertical-align: middle;
-}
-
-.low-priority-icon {
-    vertical-align: middle;
-}
-
 footer {
     margin: 0px auto;
     text-align: center;
+    width: 80%;
+    background-color: white;
+    padding-bottom: 15px;
+    border-radius: 5px;
+    margin-bottom: 25px;
 }
 
 .github-link {
@@ -259,8 +193,20 @@ footer {
 .bottom-container {
     display: flex;
     justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
-.delete-all {
+.clear-list {
     margin: 10px;
+    margin-left: auto;
+    margin-right: 20px;
+    text-align: right;
+}
+
+.title-row__change-title {
+    font-size: inherit;
+    padding: 5px;
+    margin: 5px;
 }
