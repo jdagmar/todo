@@ -5,5 +5,5 @@ if (isset($_GET["edit-titleid"])){
     $_SESSION["editMode"] = $_GET["edit-titleid"];
 }
 
-header("Location: .");
+header("Location: ..");
 exit();

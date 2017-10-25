@@ -1,10 +1,12 @@
 <?php
 session_start();
 
-require 'PDO.php';
+require '../database/PDO.php';
+require '../database/functions.php';
+
 saveChanges($pdo, $_POST["edited-task"], $_POST["id"]);
 
 unset($_SESSION["editMode"]);
 
-header("Location: .");
+header("Location: ..");
 exit();

@@ -1,6 +1,7 @@
 <?php
 session_start();
-require 'PDO.php';
+require '../database/PDO.php';
+require '../database/functions.php';
 
 $errorMissingName = false;
 $errorMissingTask = false;
@@ -32,5 +33,5 @@ $_SESSION["errorMissingName"] = $errorMissingName;
 $_SESSION["errorMissingTask"] = $errorMissingTask;
 $_SESSION["submitErrors"] = $submitErrors;
 
-header("Location: .");
+header("Location: ..");
 exit();

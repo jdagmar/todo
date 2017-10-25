@@ -1,17 +1,31 @@
 
 body {
     font-family: 'PT Sans';
-    background-image: url(images/background.png);
     font-size: 20px;
+    background-image: url(images/background.png);
 }
 
 main {
     margin: 0px auto;
-    margin-top: 30px;
+    padding-bottom: 20px;
     width: 80%;
     background-color: white;
-    padding-bottom: 20px;
-    border-radius: 5px;
+}
+
+header {
+    margin-top: 30px;
+    padding-top: 30px;
+    text-align: center;
+    font-family: 'Open Sans';
+}
+
+a {
+    text-decoration: none;
+}
+
+.icon {
+    vertical-align: middle;
+    text-decoration: none;
 }
 
 .added-msg {
@@ -28,11 +42,6 @@ main {
     margin: 0px;
 }
 
-.icon--margin {
-    vertical-align: middle;
-    margin: 5px;
-}
-
 .error-msg {
     margin: 20px auto;
     padding: 5px;    
@@ -45,6 +54,12 @@ main {
 .error-msg__text {
     margin: 0px;
 }
+
+.icon--margin {
+    margin: 5px;
+    vertical-align: middle;
+}
+
 .warning-msg {
     margin: 20px auto;
     padding: 5px;
@@ -58,33 +73,23 @@ main {
     margin: 0px;
 }
 
-header {
-    margin: 0px auto;
-    margin-top: 30px;
-    text-align: center;
-    font-family: 'Open Sans';
-    padding-top: 30px;
-}
-
 .tips-msg {
+    margin: 15px;
     text-align: center;
     font-style: italic;
-    margin: 15px;
 }
 
 .user-input {
     margin: 0px auto;
     width: 850px;
-    display: flex;
-    -webkit-appearance: none;
-    text-align: center;    
+    display: flex;  
 }
 
 .user-input__new-task {
     margin: 0px auto;
     padding: 10px;
+    font-size: inherit;
     width: 540px;
-    font-size: 20px;
     -webkit-appearance: none;
 }
 
@@ -92,13 +97,12 @@ header {
     margin: 0px auto;
     padding: 10px;
     width: 200px;
-    font-size: 20px;
+    font-size: inherit;
     -webkit-appearance: none;
 }
 
 .user-input__add-task {
     width: 50px;
-    -webkit-appearance: none;
 }
 
 .tasks {
@@ -106,22 +110,15 @@ header {
     width: 90%;
     text-align: center;
     display: flex;
-    justify-content: space-around;
 }
 
-.tasks__header,
-.finished__header {
+.tasks__header {
     text-decoration: underline;
-}
-
-.title-row__text {
-    font-weight: bold;
 }
 
 .tasks__container {
     margin: 0px auto;
-    
-    padding: 0 10px 40px 10px;
+    padding: 0 10px 60px 10px;
     border: 1px solid #767676;
     width: 400px;
     position: relative;
@@ -130,8 +127,8 @@ header {
 }
 
 .tasks__content {
-    display: flex;
     padding: 10px;
+    display: flex;
     justify-content: space-between;
     text-align: left;
 }
@@ -142,39 +139,48 @@ header {
     text-align: left;
 }
 
+.title-row__text {
+    font-weight: bold;
+}
+
 .manage-task {
     flex-shrink: 0;
-    margin: 5px;
 }
 
-a {
-    text-decoration: none;
+.title-row__change-title {
+    margin: 5px;
+    padding: 5px;
+    font-size: inherit;  
 }
 
-.checked {
-    vertical-align: middle;
-    margin: 5px;
-    text-decoration: none;
+.bottom-container {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .order-content {
-    text-align: left;
     margin: 5px;
     padding: 5px;
 }
 
+.clear-list {
+    margin: 10px;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
 footer {
     margin: 0px auto;
+    margin-bottom: 25px;
     text-align: center;
     width: 80%;
     background-color: white;
     padding-bottom: 15px;
-    border-radius: 5px;
-    margin-bottom: 25px;
 }
 
 .github-link {
-    font-size: 20px;
     vertical-align: middle;
     font-family: 'Open Sans';
 }
@@ -183,30 +189,4 @@ footer {
     width: 70px ;
     display: inline-block;
     vertical-align: middle;
-}
-
-.icon {
-    vertical-align: middle;
-    text-decoration: none;
-}
-
-.bottom-container {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
-.clear-list {
-    margin: 10px;
-    margin-left: auto;
-    margin-right: 20px;
-    text-align: right;
-}
-
-.title-row__change-title {
-    font-size: inherit;
-    padding: 5px;
-    margin: 5px;
 }

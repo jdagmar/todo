@@ -1,11 +1,13 @@
 <?php
-session_start();
-require 'PDO.php';
-require 'utils.php';
-
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
+
+session_start();
+
+require 'database/PDO.php';
+require 'database/functions.php';
+require 'functions/functions.php';
 
 $orderByPriority = isset($_GET["sortByPriority"]);
 $ascending = isset($_GET["asc"]);
@@ -17,22 +19,14 @@ if (isset($_SESSION["taskAdded"])){
     unset($_SESSION["taskAdded"]);
 }
 
-require 'head.html';
-require 'header.html';
-require 'messages.php';
+require 'partials/head.html';
+require 'partials/header.html';
+
+require 'partials/messages.php';
+
+require 'partials/user-input-field.php';
+require 'partials/tips-msg.html';
 ?>
-
-<form class="user-input" action="addTask.php" method="POST">
-    <input class="user-input__new-task" type="text" name="new-task" value="<?= getFormData("new-task"); ?>" placeholder="Add a new task to the list"/>
-    <input class="user-input__username" type="text" name="username" value="<?= getFormData("username"); ?>" placeholder="and your name"/>
-    <input class="user-input__add-task" type="image" src="images/add.svg">
-    <input type="hidden" name="submit"/>
-</form>
-
-<div class="tips-msg">
-    <p>In a hurry? Set high priority by clicking the <img class="icon" src="images/set-high-priority.svg"/> icon.</p>
-    <p>OOPS? If you check off a task by accident click  <img class="icon" src="images/check.svg"/> to undo the task!</p>  
-</div>
 
 <div class="tasks">
     <div class="tasks__container">
@@ -42,36 +36,36 @@ require 'messages.php';
                     <div class="tasks__content">      
                         <div class="tasks__priority">
                             <?php if($task["priority"]): ?>
-                                <a href="undoPriority.php?id=<?= $task["id"]?>">
-                                    <img class="icon" src="images/high-priority.svg"/>
+                                <a  role="button" aria-label="undo high priority" href="actions/undoPriority.php?id=<?= $task["id"]?>">
+                                    <img class="icon" alt="red exclamtion mark" src="images/high-priority.svg"/>
                                 </a>   
                             <?php else: ?>
-                                <a href="setPriority.php?id=<?= $task["id"]?>">
-                                    <img class="icon" src="images/set-high-priority.svg"/>
+                                <a role="button" aria-label="set high priority" href="actions/setPriority.php?id=<?= $task["id"]?>">
+                                    <img class="icon" alt="grey exclamation mark" src="images/set-high-priority.svg"/>
                                 </a>
                             <?php endif;?>
                         </div>
                     
                         <div class="title-container">
                             <div class="title-row">
-                                <form action="saveChanges.php" method="POST" id="submit">
+                                <form action="actions/saveChanges.php" method="POST" id="submit">
                                     <input class="title-row__change-title" type="text" autofocus="autofocus" name="edited-task" value="<?= $task["title"]?>"/>
                                     <input type="hidden" name="id" value="<?= $task["id"]?>" /> 
                                 </form>    
                                 <span class="title-row__text">added by </span>
-                                <img class="icon" src="images/user.svg"/>
+                                <img class="icon" alt="user icon" src="images/user.svg"/>
                                 <span><?= "" . $task['createdBy']?></span>
                             </div>
                         </div>
 
                         <div class="manage-task">
-                            <a class="manage-task__check-off" href="checkOffTask.php?id=<?= $task["id"]?>">
-                                <img class="icon" src="images/checkbox.svg"/>
+                            <a role="button" aria-label="check off" class="manage-task__check-off"  href="actions/checkOffTask.php?id=<?= $task["id"]?>">
+                                <img class="icon" alt="empty checkbox" src="images/checkbox.svg"/>
                             </a>
-                            <a class="manage-task__delete" href="deleteTask.php?id=<?= $task["id"]?>">
-                                <img class="icon" src="images/delete.svg"/>
+                            <a role="button" aria-label="delete" class="manage-task__delete" href="actions/deleteTask.php?id=<?= $task["id"]?>">
+                                <img class="icon" alt="delete icon" src="images/delete.svg"/>
                             </a> 
-                            <input class="icon" type="image" src="images/save.svg" form="submit">
+                            <input aria-label="save" class="icon" type="image" alt="save icon" src="images/save.svg" form="submit">
                         </div>
                     </div>
 
@@ -80,12 +74,12 @@ require 'messages.php';
                     <div class="tasks__content"> 
                         <div class="tasks__priority">
                             <?php if($task["priority"]): ?>
-                                <a href="undoPriority.php?id=<?= $task["id"]?>">
-                                    <img class="icon" src="images/high-priority.svg"/>
+                                <a role="button" aria-label="undo high priority" href="actions/undoPriority.php?id=<?= $task["id"]?>">
+                                    <img class="icon" alt="red exclamation mark" src="images/high-priority.svg"/>
                                 </a>   
                             <?php else: ?>
-                                <a href="setPriority.php?id=<?= $task["id"]?>">
-                                    <img class="icon" src="images/set-high-priority.svg"/>
+                                <a role="button" aria-label="set high priority" href="actions/setPriority.php?id=<?= $task["id"]?>">
+                                    <img class="icon" alt="grey exclamation mark" src="images/set-high-priority.svg"/>
                                 </a>
                             <?php endif;?>
                         </div>
@@ -94,20 +88,20 @@ require 'messages.php';
                             <div class="title-row">
                                 <span class="title-row__list-item"><?=  $task["title"]?></span>
                                 <span class="title-row__text">added by </span>
-                                <img class="icon" src="images/user.svg"/>
+                                <img class="icon" alt="user icon" src="images/user.svg"/>
                                 <span class="title-row__text"><?= "" . $task['createdBy']?></span>
                             </div>
                         </div>
 
                         <div class="manage-task">
-                            <a href="checkOffTask.php?id=<?= $task["id"]?>">
-                                <img class="icon" src="images/checkbox.svg"/>
+                            <a role="button" aria-label="check off task" href="actions/checkOffTask.php?id=<?= $task["id"]?>">
+                                <img class="icon" alt="empty checkbox" src="images/checkbox.svg"/>
                             </a>
-                            <a  href="deleteTask.php?id=<?= $task["id"]?>">
-                                <img class="icon" src="images/delete.svg"/>
+                            <a role="button" aria-label="delete" href="actions/deleteTask.php?id=<?= $task["id"]?>">
+                                <img class="icon" alt="delete icon" src="images/delete.svg"/>
                             </a> 
-                            <a href="editTitle.php?edit-titleid=<?= $task["id"]?>"> 
-                                <img class="icon" src="images/edit.svg"/>
+                            <a role="button" aria-label="edit" href="actions/editTitle.php?edit-titleid=<?= $task["id"]?>"> 
+                                <img class="icon" alt="edit icon" src="images/edit.svg"/>
                             </a>
                         </div>
                      </div>   
@@ -117,19 +111,19 @@ require 'messages.php';
 
         <div class="bottom-container">
             <div class="order-content">
-                order by priority 
+                <span>order by priority</span>
 
-                <a href="?sortByPriority">
-                    <img class="icon" src="images/up-arrow.svg"/>
+                <a role="button" aria-label="show high priority first" href="?sortByPriority">
+                    <img class="icon" alt="arrow pointing up" src="images/up-arrow.svg"/>
                 </a>
-                <a href="?sortByPriority&asc">
-                    <img class="icon" src="images/down-arrow.svg"/>
+                <a role="button" aria-label="show high priority last" href="?sortByPriority&asc">
+                    <img class="icon" alt="arrow pointing down" src="images/down-arrow.svg"/>
                 </a>
             </div>
             <div class="clear-list">
-                clear list 
-                <a href="deleteAllUnfinishedTasks.php">
-                    <img class="icon" src="images/delete-all.svg"/>
+                <span>clear list</span> 
+                <a role="button" aria-label="clear list" href="actions/deleteAllUnfinishedTasks.php">
+                    <img class="icon" alt="delete all icon" src="images/delete-all.svg"/>
                 </a> 
             </div>
         </div>
@@ -144,16 +138,16 @@ require 'messages.php';
                 <div class="title-row">
                     <span class="title-row_list-item"><?=  $task["title"]?></span>
                     <span class="title-row__text">added by </span>
-                    <img class="icon" src="images/user.svg"/>
+                    <img class="icon" alt="user icon" src="images/user.svg"/>
                     <span class="title-row__text"><?= "" . $task['createdBy']?></span>
                 </div>
                 
                 <div class="manage-task">
-                    <a href="undoCheckOffTask.php?id=<?= $task["id"]?>">
-                        <img class="icon" src="images/check.svg"/>
+                    <a role="button" aria-label="undo check off" href="actions/undoCheckOffTask.php?id=<?= $task["id"]?>">
+                        <img class="icon" alt="green check icon" src="images/check.svg"/>
                     </a>
-                    <a href="deleteTask.php?id=<?= $task["id"]?>">
-                        <img class="icon" src="images/delete.svg"/>
+                    <a role="button" href="actions/deleteTask.php?id=<?= $task["id"]?>">
+                        <img aria-label="delete" class="icon" alt="delete icon" src="images/delete.svg"/>
                     </a>                                         
                 </div>
             </div>
@@ -161,13 +155,14 @@ require 'messages.php';
 
         <div class="bottom-container">
             <div class="clear-list">
-                clear list 
-                <a href="deleteAllFinishedTasks.php">
-                    <img class="icon" src="images/delete-all.svg"/>
+                <span>clear list</span>
+                <a role="button" aria-label="clear list" href="actions/deleteAllFinishedTasks.php">
+                    <img class="icon" alt="delete all icon" src="images/delete-all.svg"/>
                 </a> 
             </div>
         </div>    
+
     </div>
 </div>
 
-<?php require 'footer.html'; ?>
+<?php require 'partials/footer.html'; ?>
