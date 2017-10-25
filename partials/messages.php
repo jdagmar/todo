@@ -1,5 +1,5 @@
 
-<?php if (isset($_SESSION["submitErrors"]) && $_SESSION["submitErrors"]): ?>
+<?php if ($error): ?>
 
     <?php if ($_SESSION["errorMissingTask"]): ?>
         <div class="error-msg">
@@ -15,14 +15,10 @@
 
 <?php endif; ?>
 
-<?php if (isset($_SESSION["titleIsNotUniqe"]) && $_SESSION["titleIsNotUniqe"]): ?>
-
-    <?php if($_SESSION["titleIsNotUniqe"]): ?>
-        <div class="warning-msg">
-            <p class="warning-msg__text">There allready is a task like this in the list <img class="icon" alt="warning icon" src="images/warning.svg"></p>
-        </div>
-    <?php endif; ?>
-
+<?php if ($warning): ?>
+    <div class="warning-msg">
+        <p class="warning-msg__text">There allready is a task like this in the list <img class="icon" alt="warning icon" src="images/warning.svg"></p>
+    </div>
 <?php endif; ?>    
 
 <?php if ($newTask): ?>

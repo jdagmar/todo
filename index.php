@@ -9,15 +9,17 @@ require 'database/PDO.php';
 require 'database/functions.php';
 require 'functions/functions.php';
 
-$orderByPriority = isset($_GET["sortByPriority"]);
-$ascending = isset($_GET["asc"]);
+$orderByPriority = isset($_SESSION["orderByPriority"]) && $_SESSION["orderByPriority"];
 
-$newTask = false;
+$newTask = isset($_SESSION["taskAdded"]);
+unset($_SESSION["taskAdded"]);
 
-if (isset($_SESSION["taskAdded"])){
-    $newTask = true;
-    unset($_SESSION["taskAdded"]);
-}
+$warning = isset($_SESSION["titleIsNotUniqe"]) && $_SESSION["titleIsNotUniqe"];
+unset($_SESSION["titleIsNotUniqe"]);
+
+$error = isset($_SESSION["submitErrors"]) && $_SESSION["submitErrors"];
+unset($_SESSION["submitErrors"]);
+
 
 require 'partials/head.html';
 require 'partials/header.html';
@@ -31,7 +33,7 @@ require 'partials/tips-msg.html';
 <div class="tasks">
     <div class="tasks__container">
         <h2 class="tasks__header">Task's to do</h2>      
-        <?php foreach (getUnfinishedTasks($pdo, $orderByPriority, $ascending) as $i => $task): ?>
+        <?php foreach (getUnfinishedTasks($pdo, $orderByPriority, false) as $i => $task): ?>
                 <?php if(isset($_SESSION["editMode"]) && $_SESSION["editMode"] == $task["id"]):?>
                     <div class="tasks__content">      
                         <div class="tasks__priority">
@@ -111,14 +113,16 @@ require 'partials/tips-msg.html';
 
         <div class="bottom-container">
             <div class="order-content">
-                <span>order by priority</span>
-
-                <a role="button" aria-label="show high priority first" href="?sortByPriority">
-                    <img class="icon" alt="arrow pointing up" src="images/up-arrow.svg"/>
-                </a>
-                <a role="button" aria-label="show high priority last" href="?sortByPriority&asc">
-                    <img class="icon" alt="arrow pointing down" src="images/down-arrow.svg"/>
-                </a>
+                <span>Sort by priority</span>
+                <?php if ($orderByPriority):?>
+                    <a role="button" aria-label="show high priority first" href="actions/sortTasks.php">
+                        <img class="icon" alt="checked checkbox" src="images/order-check.svg"/>
+                    </a>
+                <?php else: ?>
+                    <a role="button" aria-label="show high priority last" href="actions/sortTasks.php?sortByPriority">
+                        <img class="icon" alt="checkbox icon" src="images/checkbox.svg"/>
+                    </a>
+                <?php endif ?>
             </div>
             <div class="clear-list">
                 <span>clear list</span> 

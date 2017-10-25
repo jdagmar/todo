@@ -13,10 +13,15 @@ main {
 }
 
 header {
-    margin-top: 30px;
-    padding-top: 30px;
+    margin: 20px 0px 10px 0px;
+    padding: 10px 0px;
     text-align: center;
     font-family: 'Open Sans';
+}
+
+h1 {
+    padding: 0px;
+    margin: 0px;
 }
 
 a {
@@ -43,7 +48,7 @@ a {
 }
 
 .error-msg {
-    margin: 20px auto;
+    margin: 10px auto;
     padding: 5px;    
     width: 500px;
     text-align: center;
@@ -61,7 +66,7 @@ a {
 }
 
 .warning-msg {
-    margin: 20px auto;
+    margin: 10px auto;
     padding: 5px;
     width: 500px;
     text-align: center;
@@ -69,7 +74,7 @@ a {
     background-color: rgba(236, 236, 2, 0.5);
 }
 
-.warning-msg__text {
+.warning-__text {
     margin: 0px;
 }
 
@@ -120,10 +125,11 @@ a {
     margin: 0px auto;
     padding: 0 10px 60px 10px;
     border: 1px solid #767676;
-    width: 400px;
+    width: 425px;
     position: relative;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 1px 1px 1px #000000;
 }
 
 .tasks__content {
@@ -144,6 +150,7 @@ a {
 }
 
 .manage-task {
+    margin-left: 5px;
     flex-shrink: 0;
 }
 
