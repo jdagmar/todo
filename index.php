@@ -20,7 +20,6 @@ unset($_SESSION["titleIsNotUniqe"]);
 $error = isset($_SESSION["submitErrors"]) && $_SESSION["submitErrors"];
 unset($_SESSION["submitErrors"]);
 
-
 require 'partials/head.html';
 require 'partials/header.html';
 
@@ -32,7 +31,7 @@ require 'partials/tips-msg.html';
 
 <div class="tasks">
     <div class="tasks__container">
-        <h2 class="tasks__header">Task's to do</h2>      
+        <h2 class="tasks__header">Tasks to do</h2>      
         <?php foreach (getUnfinishedTasks($pdo, $orderByPriority, false) as $i => $task): ?>
                 <?php if(isset($_SESSION["editMode"]) && $_SESSION["editMode"] == $task["id"]):?>
                     <div class="tasks__content">      
@@ -113,7 +112,7 @@ require 'partials/tips-msg.html';
 
         <div class="bottom-container">
             <div class="order-content">
-                <span>Sort by priority</span>
+                <span>Show high priority first</span>
                 <?php if ($orderByPriority):?>
                     <a role="button" aria-label="show high priority first" href="actions/sortTasks.php">
                         <img class="icon" alt="checked checkbox" src="images/order-check.svg"/>
@@ -135,7 +134,7 @@ require 'partials/tips-msg.html';
     </div>
 
     <div class="tasks__container">
-        <h2 class="tasks__header">Finished task's</h2> 
+        <h2 class="tasks__header">Finished tasks</h2> 
 
         <?php foreach (getFinishedTasks($pdo) as $i => $task): ?>
             <div class="tasks__content"> 

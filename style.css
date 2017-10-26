@@ -1,7 +1,10 @@
 
 body {
+    margin: 0px;
+    padding: 0px;
     font-family: 'PT Sans';
     font-size: 20px;
+    letter-spacing: 0.5px;
     background-image: url(images/background.png);
 }
 
@@ -9,12 +12,13 @@ main {
     margin: 0px auto;
     padding-bottom: 20px;
     width: 80%;
+    height: 100%;
     background-color: white;
 }
 
 header {
-    margin: 20px 0px 10px 0px;
-    padding: 10px 0px;
+    margin-bottom: 30px;
+    padding-top: 30px;
     text-align: center;
     font-family: 'Open Sans';
 }
@@ -22,10 +26,15 @@ header {
 h1 {
     padding: 0px;
     margin: 0px;
+    letter-spacing: 2px;
 }
 
 a {
     text-decoration: none;
+}
+
+p {
+    margin: 0px;
 }
 
 .icon {
@@ -56,15 +65,6 @@ a {
     background-color: rgba(255, 60, 60, 0.5);
 }
 
-.error-msg__text {
-    margin: 0px;
-}
-
-.icon--margin {
-    margin: 5px;
-    vertical-align: middle;
-}
-
 .warning-msg {
     margin: 10px auto;
     padding: 5px;
@@ -74,20 +74,21 @@ a {
     background-color: rgba(236, 236, 2, 0.5);
 }
 
-.warning-__text {
-    margin: 0px;
-}
-
 .tips-msg {
-    margin: 15px;
+    margin: 30px;
     text-align: center;
     font-style: italic;
+}
+
+.tips-msg__text {
+    margin: 20px;
 }
 
 .user-input {
     margin: 0px auto;
     width: 850px;
-    display: flex;  
+    display: flex; 
+    letter-spacing: inherit;
 }
 
 .user-input__new-task {
@@ -115,28 +116,32 @@ a {
     width: 90%;
     text-align: center;
     display: flex;
-}
-
-.tasks__header {
-    text-decoration: underline;
+    flex-direction: column;
 }
 
 .tasks__container {
-    margin: 0px auto;
-    padding: 0 10px 60px 10px;
+    margin: 20px auto;
+    padding-bottom: 60px;
     border: 1px solid #767676;
-    width: 425px;
+    width: 800px;
     position: relative;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 1px 1px 1px #000000;
+    box-shadow: 0.5px 0.5px 1px #000000;
+    border-style: inset;
 }
 
 .tasks__content {
+    margin: 5px;
     padding: 10px;
+    border: 1px solid #ddd;
     display: flex;
     justify-content: space-between;
     text-align: left;
+}
+
+.tasks__content:hover {
+    background-color: #9dbdc7;
 }
 
 .title-container {
@@ -157,7 +162,11 @@ a {
 .title-row__change-title {
     margin: 5px;
     padding: 5px;
+    width: 600px;
     font-size: inherit;  
+    letter-spacing: inherit;
+    border: 1px solid #ddd;
+    background-color: transparent;
 }
 
 .bottom-container {
@@ -180,11 +189,10 @@ a {
 
 footer {
     margin: 0px auto;
-    margin-bottom: 25px;
     text-align: center;
     width: 80%;
     background-color: white;
-    padding-bottom: 15px;
+    padding-bottom: 20px;
 }
 
 .footer__text {
@@ -202,5 +210,6 @@ footer {
 
 .footer__link:hover {
    color: black;
-   border-bottom: 2px solid black;
+   border-bottom: 1.5px solid black;
+   
 }
