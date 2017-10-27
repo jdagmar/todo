@@ -33,7 +33,7 @@ require 'partials/tips-msg.html';
     <div class="tasks__container">
         <h2 class="tasks__header">Tasks to do</h2>      
         <?php foreach (getUnfinishedTasks($pdo, $orderByPriority, false) as $i => $task): ?>
-                <?php if(isset($_SESSION["editMode"]) && $_SESSION["editMode"] == $task["id"]):?>
+                <?php if(isset($_SESSION["editMode"]) && $_SESSION["editMode"] == $task["id"]): ?>
                     <div class="tasks__content">      
                         <div class="tasks__priority">
                             <?php if($task["priority"]): ?>
@@ -44,7 +44,7 @@ require 'partials/tips-msg.html';
                                 <a role="button" aria-label="set high priority" href="actions/setPriority.php?id=<?= $task["id"]?>">
                                     <img class="icon" alt="grey exclamation mark" src="images/set-high-priority.svg"/>
                                 </a>
-                            <?php endif;?>
+                            <?php endif; ?>
                         </div>
                     
                         <div class="title-container">
@@ -66,7 +66,7 @@ require 'partials/tips-msg.html';
                             <a role="button" aria-label="delete" class="manage-task__delete" href="actions/deleteTask.php?id=<?= $task["id"]?>">
                                 <img class="icon" alt="delete icon" src="images/delete.svg"/>
                             </a> 
-                            <input aria-label="save" class="icon" type="image" alt="save icon" src="images/save.svg" form="submit">
+                            <input role="button" aria-label="save changes" class="icon" type="image" alt="save icon" src="images/save.svg" form="submit">
                         </div>
                     </div>
 
@@ -82,7 +82,7 @@ require 'partials/tips-msg.html';
                                 <a role="button" aria-label="set high priority" href="actions/setPriority.php?id=<?= $task["id"]?>">
                                     <img class="icon" alt="grey exclamation mark" src="images/set-high-priority.svg"/>
                                 </a>
-                            <?php endif;?>
+                            <?php endif; ?>
                         </div>
                 
                         <div class="title-container">
@@ -121,7 +121,7 @@ require 'partials/tips-msg.html';
                     <a role="button" aria-label="show high priority last" href="actions/sortTasks.php?sortByPriority">
                         <img class="icon" alt="checkbox icon" src="images/checkbox.svg"/>
                     </a>
-                <?php endif ?>
+                <?php endif; ?>
             </div>
             <div class="clear-list">
                 <span>clear list</span> 
